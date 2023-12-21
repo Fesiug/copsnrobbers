@@ -9,10 +9,27 @@ SWEP.ViewModelFOV				= 90
 SWEP.WorldModel					= "models/weapons/w_pist_p228.mdl"
 SWEP.ActivePos					= Vector( 1, -6, -1 )
 
-SWEP.Sound_Shoot				= "weapons/p228/p228-1.wav"
+SWEP.Sound_Fire					= {
+	"cnr/weapons/p220/fire-01.ogg",
+	"cnr/weapons/p220/fire-02.ogg",
+	"cnr/weapons/p220/fire-03.ogg",
+}
 
 SWEP.Primary.ClipSize			= 13
 SWEP.Delay						= ( 60 / 400 )
 SWEP.MaxBurst					= 1
 SWEP.DamageClose				= 25
 SWEP.DamageFar					= 13
+
+SWEP.BubbleSpreadUp				= 0.8
+SWEP.BubbleRecoilUp				= 0.8
+SWEP.BubbleSpreadDown			= 0.1
+SWEP.BubbleRecoilDown			= 0.1
+
+SWEP.SpreadStart				= 0.1
+SWEP.SpreadEnd					= 4
+
+SWEP.RecoilUp					= 33
+SWEP.RecoilSpeed				= 60
+SWEP.RecoilDistStart			= 0.8
+SWEP.RecoilDistEnd				= 2.2

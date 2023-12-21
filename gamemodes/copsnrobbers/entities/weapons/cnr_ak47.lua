@@ -9,7 +9,11 @@ SWEP.ViewModelFOV				= 90
 SWEP.WorldModel					= "models/weapons/w_rif_ak47.mdl"
 SWEP.ActivePos					= Vector( 1, -8, -1 )
 
-SWEP.Sound_Shoot				= "weapons/ak47/ak47-1.wav"
+SWEP.Sound_Fire					= {
+	"cnr/weapons/ak47/fire-01.ogg",
+	"cnr/weapons/ak47/fire-02.ogg",
+	"cnr/weapons/ak47/fire-03.ogg",
+}
 
 SWEP.Primary.ClipSize			= 30
 SWEP.Delay						= ( 60 / 700 )

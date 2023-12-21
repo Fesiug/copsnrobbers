@@ -1,7 +1,7 @@
 
 SWEP.Base						= "cnr"
 
-SWEP.PrintName					= "SLIMLINE"
+SWEP.PrintName					= "SLIMLINE 12G"
 SWEP.Slot						= 0
 
 SWEP.ViewModel					= "models/weapons/cstrike/c_shot_m3super90.mdl"
