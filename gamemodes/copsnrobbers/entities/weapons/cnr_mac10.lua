@@ -10,9 +10,9 @@ SWEP.WorldModel					= "models/weapons/w_smg_mac10.mdl"
 SWEP.ActivePos					= Vector( 2, -2, -2 )
 
 SWEP.Sound_Fire					= {
-	"cnr/weapons/mp5/fire-01.ogg",
-	"cnr/weapons/mp5/fire-02.ogg",
-	"cnr/weapons/mp5/fire-03.ogg",
+	"cnr/weapons/mac10/fire-01.ogg",
+	"cnr/weapons/mac10/fire-02.ogg",
+	"cnr/weapons/mac10/fire-03.ogg",
 }
 
 SWEP.Primary.ClipSize			= 32

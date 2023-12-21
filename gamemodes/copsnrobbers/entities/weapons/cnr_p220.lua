@@ -19,7 +19,7 @@ SWEP.Primary.ClipSize			= 13
 SWEP.Delay						= ( 60 / 400 )
 SWEP.MaxBurst					= 1
 SWEP.DamageClose				= 25
-SWEP.DamageFar					= 13
+SWEP.DamageFar					= 21
 
 SWEP.BubbleSpreadUp				= 0.8
 SWEP.BubbleRecoilUp				= 0.8
