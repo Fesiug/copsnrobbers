@@ -28,4 +28,9 @@ function SWEP:Think()
 	local up = self:GetDelay() > CurTime()-engine.TickInterval()
 	self:SetBubbleSpread( math.Approach( self:GetBubbleSpread(), up and 1 or 0, FrameTime()/(up and self.BubbleSpreadUp or self.BubbleSpreadDown) ) )
 	self:SetBubbleRecoil( math.Approach( self:GetBubbleRecoil(), up and 1 or 0, FrameTime()/(up and self.BubbleRecoilUp or self.BubbleRecoilDown) ) )
+
+	if self:GetRefillTime() != -1 and CurTime() >= self:GetRefillTime() then
+		self:SetClip1( self.Primary.ClipSize )
+		self:SetRefillTime( -1 )
+	end
 end

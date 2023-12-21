@@ -16,7 +16,7 @@ SWEP.Sound_Fire					= {
 }
 
 SWEP.Primary.ClipSize			= 5
-SWEP.Delay						= ( 60 / 300 )
+SWEP.Delay						= ( 60 / 180 )
 SWEP.MaxBurst					= 1
 SWEP.DamageClose				= 25
 SWEP.DamageFar					= 13

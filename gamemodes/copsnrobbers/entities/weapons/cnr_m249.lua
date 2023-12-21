@@ -19,3 +19,16 @@ SWEP.Primary.ClipSize			= 60
 SWEP.Delay						= ( 60 / 700 )
 SWEP.DamageClose				= 25
 SWEP.DamageFar					= 13
+
+SWEP.BubbleSpreadUp				= 2
+SWEP.BubbleRecoilUp				= 2
+SWEP.BubbleSpreadDown			= 0.4
+SWEP.BubbleRecoilDown			= 0.4
+
+SWEP.SpreadStart				= 0.1
+SWEP.SpreadEnd					= 4
+
+SWEP.RecoilUp					= 33
+SWEP.RecoilSpeed				= 60
+SWEP.RecoilDistStart			= 1
+SWEP.RecoilDistEnd				= 10

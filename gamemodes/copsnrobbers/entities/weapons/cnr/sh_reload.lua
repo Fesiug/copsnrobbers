@@ -12,6 +12,7 @@ function SWEP:Reload()
 	self:SendWeaponAnim( ACT_VM_RELOAD )
 	self:GetOwner():GetViewModel():SetPlaybackRate( 2.5 )
 	self:SetDelayReload( CurTime() + self:SequenceDuration()/2.5 )
-	self:SetClip1( self.Primary.ClipSize )
+	self:SetRefillTime( CurTime() + self:SequenceDuration()/2.5 )
+	--self:SetClip1( self.Primary.ClipSize )
 	return true
 end

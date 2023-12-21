@@ -69,7 +69,27 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 		surface.SetDrawColor( color_white )
 		surface.DrawRect( b_x, b_y, b_w, b_h )
 		draw.SimpleText( "TIME", "CNR_HUD_3", b_x + b, b_y + s(4), color_black, TEXT_ALIGN_LEFT )
-		draw.SimpleText( string.FormattedTime( -CurTime()*1000, "%02i:%02i"), "CNR_HUD_4", b_x + b, b_y + s(12), color_black, TEXT_ALIGN_LEFT )
+
+
+		local fuckhead = ""
+
+		fuckhead = string.FormattedTime( -CurTime()*100, "%02i:%02i")
+
+		local bump = 0
+		for i=1, #fuckhead do
+			local damnit = b_x + b
+			local clean = 0
+			if fuckhead[i] == "1" then
+				clean = 2
+			end
+
+			draw.SimpleText( fuckhead[i], "CNR_HUD_4", damnit + s(bump) + s(clean), b_y + s(12), color_black, TEXT_ALIGN_LEFT )
+			if fuckhead[i] == ":" then
+				bump = bump + 5
+			else
+				bump = bump + 12
+			end
+		end
 	end
 
 	do
@@ -78,6 +98,38 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 		surface.SetDrawColor( color_white )
 		surface.DrawRect( b_x, b_y, b_w, b_h )
 		draw.SimpleText( "$", "CNR_HUD_3", b_x + b, b_y + s(8), color_black, TEXT_ALIGN_LEFT )
-		draw.SimpleText( "100,000,000", "CNR_HUD_4", b_x + b_w - b, b_y, color_black, TEXT_ALIGN_RIGHT )
+
+		local fuckhead = ""
+
+		fuckhead = math.Round(CurTime()*100)
+		fuckhead = string.Comma( fuckhead )
+
+		local originalbump = 0
+		for i=1, #fuckhead do
+			if fuckhead[i] == "," then
+				originalbump = originalbump + s(6)
+			else
+				originalbump = originalbump + s(12)
+			end
+		end
+
+		local whatever = b_x + b_w - b - originalbump
+		local bump = 0
+		for i=1, #fuckhead do
+			local damnit = whatever + s(bump)
+
+			local clean = 0
+			if fuckhead[i] == "1" then
+				clean = 4
+			elseif fuckhead[i] == "2" then
+				clean = 0
+			end
+			draw.SimpleText( fuckhead[i], "CNR_HUD_4", damnit + s(clean), b_y, color_black, TEXT_ALIGN_LEFT )
+			if fuckhead[i] == "," then
+				bump = bump + 6
+			else
+				bump = bump + 12
+			end
+		end
 	end
 end)

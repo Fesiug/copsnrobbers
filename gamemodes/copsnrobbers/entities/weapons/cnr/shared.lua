@@ -76,6 +76,8 @@ function SWEP:SetupDataTables()
 	self:NetworkVar( "Float", 4, "BubbleSpread" )
 	self:NetworkVar( "Float", 5, "BubbleRecoil" )
 	self:NetworkVar( "Int", 0, "BurstCount" )
+
+	self:SetRefillTime( -1 )
 end
 
 SWEP.m_WeaponDeploySpeed = 10
@@ -86,5 +88,6 @@ function SWEP:Deploy()
 	return true
 end
 function SWEP:Holster()
+	self:SetRefillTime( -1 )
 	return true
 end
