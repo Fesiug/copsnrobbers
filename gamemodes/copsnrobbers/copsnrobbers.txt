@@ -9,45 +9,45 @@
 
 	"settings"
 	{
-		1
-		{
-			"name"			"cnr_roundlength"
-			"text"			"Round length (minutes)"
-			"help"			""
-			"type"			"Numeric"
-			"default"		"3"
-		}
-		2
-		{
-			"name"			"cnr_roundlength"
-			"text"			"Haste time (minutes)"
-			"help"			""
-			"type"			"Numeric"
-			"default"		"1"
-		}
-		3
-		{
-			"name"			"cnr_maxrounds"
-			"text"			"Game ends after X rounds"
-			"help"			""
-			"type"			"Numeric"
-			"default"		"6"
-		}
-		4
-		{
-			"name"			"cnr_teamswap"
-			"text"			"Swap teams after X rounds"
-			"help"			""
-			"type"			"Numeric"
-			"default"		"2"
-		}
-		5
-		{
-			"name"			"cnr_friendlyfire"
-			"text"			"Friendly fire"
-			"help"			"Enable friendly fire"
-			"type"			"CheckBox"
-			"default"		"0"
-		}
+		//1
+		//{
+		//	"name"			"cnr_roundlength"
+		//	"text"			"Round length (minutes)"
+		//	"help"			""
+		//	"type"			"Numeric"
+		//	"default"		"3"
+		//}
+		//2
+		//{
+		//	"name"			"cnr_hastetime"
+		//	"text"			"Haste time (minutes)"
+		//	"help"			""
+		//	"type"			"Numeric"
+		//	"default"		"1"
+		//}
+		//3
+		//{
+		//	"name"			"cnr_maxrounds"
+		//	"text"			"Game ends after X rounds"
+		//	"help"			""
+		//	"type"			"Numeric"
+		//	"default"		"6"
+		//}
+		//4
+		//{
+		//	"name"			"cnr_teamswap"
+		//	"text"			"Swap teams after X rounds"
+		//	"help"			""
+		//	"type"			"Numeric"
+		//	"default"		"2"
+		//}
+		//5
+		//{
+		//	"name"			"cnr_friendlyfire"
+		//	"text"			"Friendly fire"
+		//	"help"			"Enable friendly fire"
+		//	"type"			"CheckBox"
+		//	"default"		"0"
+		//}
 	}
 }

@@ -13,6 +13,9 @@ end
 AddCSLuaFile("player_class_cnr.lua")
 	include ("player_class_cnr.lua")
 
+AddCSLuaFile("logic.lua")
+	include ("logic.lua")
+
 function GM:Initialize()
 	-- Do stuff
 end
@@ -132,3 +135,4 @@ concommand.Add( "cnr_cheat_weapons", function( p )
 end)
 
 -- Include module loader here
+
