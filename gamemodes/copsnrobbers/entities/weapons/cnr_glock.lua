@@ -31,5 +31,5 @@ SWEP.SpreadEnd					= 3
 
 SWEP.RecoilUp					= 45
 SWEP.RecoilSpeed				= 40
-SWEP.RecoilDistStart			= 1
+SWEP.RecoilDistStart			= 2
 SWEP.RecoilDistEnd				= 3

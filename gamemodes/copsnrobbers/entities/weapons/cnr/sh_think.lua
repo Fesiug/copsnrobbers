@@ -7,16 +7,31 @@ function SWEP:Think()
 	if CLIENT and IsFirstTimePredicted() then
 		for i, data in pairs( self.RecoilTable ) do
 			local ft = FrameTime()
-			local fp = ft * data.speed
-			data.dist = math.Approach( data.dist, 0, fp )
-
+			local diff = data.dist - math.Approach( data.dist, 0, ft * data.speed )
+			data.dist = math.Approach( data.dist, 0, ft * data.speed )
 			local m_p, m_y = math.cos(math.rad(data.up)), math.sin(math.rad(data.up))
 
-			local p_p, p_y = m_p * fp, m_y * fp
+			local p_p, p_y = m_p * diff, m_y * diff
 
 			p:SetEyeAngles( p:EyeAngles() - Angle( p_p, p_y, 0 ) )
-			if data.dist == 0 then
-				self.RecoilTable[i] = nil
+
+			if data.up2 then
+				if data.dist == 0 then
+					local diff = data.dist2 - math.Approach( data.dist2, 0, ft * data.speed2 )
+					data.dist2 = math.Approach( data.dist2, 0, ft * data.speed2 )
+					local m_p, m_y = math.cos(math.rad(data.up2)), math.sin(math.rad(data.up2))
+		
+					local p_p, p_y = m_p * diff, m_y * diff
+		
+					p:SetEyeAngles( p:EyeAngles() - Angle( p_p, p_y, 0 ) )
+				end
+				if data.dist2 == 0 then
+					self.RecoilTable[i] = nil
+				end
+			else
+				if data.dist == 0 then
+					self.RecoilTable[i] = nil
+				end
 			end
 		end
 	end

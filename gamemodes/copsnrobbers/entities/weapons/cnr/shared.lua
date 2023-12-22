@@ -37,7 +37,7 @@ SWEP.SpreadEnd					= 10
 
 SWEP.RecoilUp					= 33
 SWEP.RecoilSpeed				= 90
-SWEP.RecoilDistStart			= 0
+SWEP.RecoilDistStart			= 1
 SWEP.RecoilDistEnd				= 10
 SWEP.RecoilDistFunc				= math.ease.InExpo
 

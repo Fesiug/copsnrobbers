@@ -16,6 +16,9 @@ STATE_INGAME					= 3
 STATE_POSTGAME					= 4
 
 if SERVER then
+	util.AddNetworkString("CNR_Logic_Ingame")
+	util.AddNetworkString("CNR_Logic_Postgame")
+	util.AddNetworkString("CNR_Logic_Pregame")
 	gamelogic = NULL
 	hook.Add( "Think", "CNR_GameLogic", function()
 		if !gamelogic:IsValid() then
@@ -54,6 +57,8 @@ if SERVER then
 				-- Begin round
 				state = STATE_INGAME
 				gamelogic:SetRoundStartedAt( RealTime() )
+				net.Start( "CNR_Logic_Ingame" )
+				net.Broadcast()
 			end
 		end
 	
@@ -62,6 +67,8 @@ if SERVER then
 			if (gamelogic:GetRoundStartedAt() + CONVARS["time_round"]:GetInt()) <= RealTime() then
 				state = STATE_POSTGAME
 				gamelogic:SetRoundFinishedAt( RealTime() )
+				net.Start( "CNR_Logic_Postgame" )
+				net.Broadcast()
 			end
 		end
 	
@@ -85,6 +92,8 @@ if SERVER then
 				for i, v in player.Iterator() do
 					v:Spawn()
 				end
+				net.Start( "CNR_Logic_Pregame" )
+				net.Broadcast()
 			end
 		end
 	
@@ -96,7 +105,7 @@ LOGIC = {}
 
 function LOGIC:GetLogic()
 	for i, ent in ents.Iterator() do
-		if ( ent:GetClass() == "cnr_logic" ) then return ent end
+		if ( ent:GetClass() == "cnr_logic" ) and ent.GetState then return ent end
 	end
 	if SERVER then
 		gamelogic = ents.Create( "cnr_logic" )

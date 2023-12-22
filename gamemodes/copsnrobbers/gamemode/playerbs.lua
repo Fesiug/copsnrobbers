@@ -137,3 +137,22 @@ function GM:PlayerSetModel( p )
 		p:SetModel( "models/player/group03/male_07.mdl" )
 	end
 end
+
+
+hook.Add( "StartCommand", "CNR_StartCommand", function( ply, cmd )
+	if ( ply:IsBot() or !ply:Alive() ) then return end
+
+	local gamelogic = LOGIC:GetLogic()
+	if IsValid( gamelogic ) and gamelogic:GetState() == STATE_PREGAME then
+		cmd:ClearMovement()
+		cmd:ClearButtons()
+	end
+end)
+
+hook.Add( "Move", "CNR_Move", function( ply, mv )
+	local gamelogic = LOGIC:GetLogic()
+	if IsValid( gamelogic ) and gamelogic:GetState() == STATE_PREGAME then
+		mv:SetMaxClientSpeed( 0 )
+		mv:SetMaxSpeed( 0 )
+	end
+end)

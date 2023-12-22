@@ -65,6 +65,10 @@ function SWEP:PrimaryAttack( mine )
 
 			recoil.dist = Lerp( self:GetBubbleRecoil(), self.RecoilDistStart, self.RecoilDistEnd ) -- total distance to travel
 
+			--recoil.up2 = recoil.up + 180
+			--recoil.speed2 = recoil.speed * 0.25
+			--recoil.dist2 = recoil.dist
+
 			table.insert( self.RecoilTable, recoil )
 		end
 	end

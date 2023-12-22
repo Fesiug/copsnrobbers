@@ -105,6 +105,9 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 		for i, ent in ents.Iterator() do
 			if ( ent:GetClass() == "cnr_logic" ) then gamelogic = ent print("Located CNR game logic entity") break end
 		end
+		if !gamelogic:IsValid() then
+			print("Couldn't locate CNR game logic entity!")
+		end
 	end
 
 	do
@@ -149,7 +152,7 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 			surface.SetDrawColor( color_white )
 			surface.DrawRect( n_x, n_y, n_w, n_h )
 			draw.SimpleText( "ROUND NUMBER", "CNR_HUD_3", n_x + b, n_y + s(4), color_black )
-			draw.SimpleText( gamelogic:GetRound() .. " - " .. gamelogic:GetSwappedAtRound() .. " : " .. (gamelogic:GetTeamSwap() and "Swap" or "Not"), "CNR_HUD_4", n_x + b, n_y + s(12), color_black )
+			draw.SimpleText( gamelogic:GetRound(), "CNR_HUD_4", n_x + b, n_y + s(12), color_black )
 		end
 	end
 
