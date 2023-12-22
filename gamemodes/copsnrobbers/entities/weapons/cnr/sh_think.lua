@@ -45,7 +45,23 @@ function SWEP:Think()
 	self:SetBubbleRecoil( math.Approach( self:GetBubbleRecoil(), up and 1 or 0, FrameTime()/(up and self.BubbleRecoilUp or self.BubbleRecoilDown) ) )
 
 	if self:GetRefillTime() != -1 and CurTime() >= self:GetRefillTime() then
-		self:SetClip1( self.Primary.ClipSize )
+		self:SetClip1( self.ShotgunReloading and (self:Clip1() + 1) or self.Primary.ClipSize )
 		self:SetRefillTime( -1 )
+	end
+
+	if self:GetShotgunReloading() == 1 then
+		if p:KeyDown( IN_ATTACK ) or (self:GetDelayReload() <= CurTime() and self:Clip1() == self.Primary.ClipSize) then
+			self:SendWeaponAnim( ACT_SHOTGUN_RELOAD_FINISH )
+			self:GetOwner():GetViewModel():SetPlaybackRate( 2.5 )
+			self:SetRefillTime( -1 )
+			self:SetShotgunReloading( 0 )
+		else
+			if self:GetDelayReload() <= CurTime() then
+				self:SendWeaponAnim( ACT_VM_RELOAD )
+				self:GetOwner():GetViewModel():SetPlaybackRate( 2.5 )
+				self:SetDelayReload( CurTime() + 0.2 )
+				self:SetRefillTime( CurTime() + 0.1 )
+			end
+		end
 	end
 end

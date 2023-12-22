@@ -24,7 +24,7 @@ SWEP.DamageFar					= 11
 SWEP.BubbleSpreadUp				= 0.2
 SWEP.BubbleRecoilUp				= 0.2
 SWEP.BubbleSpreadDown			= 0.3
-SWEP.BubbleRecoilDown			= 0.3
+SWEP.BubbleRecoilDown			= 0.2
 
 SWEP.SpreadStart				= 1
 SWEP.SpreadEnd					= 3
@@ -32,4 +32,4 @@ SWEP.SpreadEnd					= 3
 SWEP.RecoilUp					= 45
 SWEP.RecoilSpeed				= 40
 SWEP.RecoilDistStart			= 2
-SWEP.RecoilDistEnd				= 3
+SWEP.RecoilDistEnd				= 5

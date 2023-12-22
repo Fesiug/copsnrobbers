@@ -58,8 +58,12 @@ function GM:ScalePlayerDamage( ply, hitgroup, dmginfo )
 end
 
 function GM:PlayerInitialSpawn( pl, transition )
-	pl:SetTeam( TEAM_UNASSIGNED )
-	pl:ConCommand( "gm_showteam" )
+	if pl:IsBot() then
+		pl:SetTeam( team.BestAutoJoinTeam() )
+	else
+		pl:SetTeam( TEAM_UNASSIGNED )
+		pl:ConCommand( "gm_showteam" )
+	end
 end
 function GM:PlayerSpawnAsSpectator( pl )
 	pl:StripWeapons()
@@ -156,3 +160,34 @@ hook.Add( "Move", "CNR_Move", function( ply, mv )
 		mv:SetMaxSpeed( 0 )
 	end
 end)
+
+if SERVER then
+	util.AddNetworkString( "CNR_Kill" )
+
+	function GM:DoPlayerDeath( ply, attacker, dmginfo )
+		ply:CreateRagdoll()
+		ply:AddDeaths( 1 )
+		if ( attacker:IsValid() && attacker:IsPlayer() ) then
+			if ( attacker == ply ) then
+				attacker:AddFrags( -1 )
+			else
+				attacker:AddFrags( 1 )
+			end
+		end
+		net.Start( "CNR_Kill" )
+			net.WriteEntity( ply )
+			net.WriteEntity( attacker )
+			net.WriteEntity( dmginfo:GetInflictor() )
+		net.Broadcast()
+	end
+else
+	local c_attacker = Color( 255, 100, 100 )
+	local c_victim = Color( 100, 100, 255 )
+	net.Receive( "CNR_Kill", function()
+		local victim		= net.ReadEntity()
+		local attacker		= net.ReadEntity()
+		local inflictor		= net.ReadEntity()
+
+		chat.AddText( c_attacker, attacker:Nick(), color_white, " [", inflictor:GetPrintName(), "] ", c_victim, victim:Nick(), color_white )
+	end)
+end

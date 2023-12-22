@@ -76,6 +76,7 @@ function SWEP:SetupDataTables()
 	self:NetworkVar( "Float", 4, "BubbleSpread" )
 	self:NetworkVar( "Float", 5, "BubbleRecoil" )
 	self:NetworkVar( "Int", 0, "BurstCount" )
+	self:NetworkVar( "Int", 1, "ShotgunReloading" )
 
 	self:SetRefillTime( -1 )
 end

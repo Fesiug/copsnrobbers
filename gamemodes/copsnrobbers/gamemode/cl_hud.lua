@@ -34,6 +34,18 @@ surface.CreateFont( "CNR_HUD_4", {
 	weight = 0,
 })
 
+surface.CreateFont( "CNR_SEL_1", {
+	font = "Bahnschrift Light",
+	size = ScreenScaleH(18),
+	weight = 0,
+})
+
+surface.CreateFont( "CNR_SEL_2", {
+	font = "Bahnschrift Light",
+	size = ScreenScaleH(10),
+	weight = 0,
+})
+
 local special1 = {
 	normal = 12,
 	colon = 5,
@@ -147,12 +159,12 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 		MonoDraw( fuckhead, "CNR_HUD_4", b_x + b, b_y + s(12), color_black, false, special1 )
 
 		do
-			local n_w, n_h = s(128), s(42)
+			local n_w, n_h = s(56), s(42)
 			local n_x, n_y = b_x + b + b_w, b_y
 			surface.SetDrawColor( color_white )
 			surface.DrawRect( n_x, n_y, n_w, n_h )
-			draw.SimpleText( "ROUND NUMBER", "CNR_HUD_3", n_x + b, n_y + s(4), color_black )
-			draw.SimpleText( gamelogic:GetRound(), "CNR_HUD_4", n_x + b, n_y + s(12), color_black )
+			draw.SimpleText( "ROUND", "CNR_HUD_3", n_x + b, n_y + s(4), color_black )
+			draw.SimpleText( gamelogic:GetRound() .. "/" .. CONVARS["rounds_max"]:GetInt(), "CNR_HUD_4", n_x + b, n_y + s(12), color_black )
 		end
 	end
 

@@ -45,7 +45,7 @@ function SWEP:PrimaryAttack( mine )
 	self:FireBullets( {
 		Attacker = self:GetOwner(),
 		Tracer = 1,
-		Damage = 25,
+		Damage = self.DamageClose,
 		Force = 1,
 		Num = 1,
 		Dir = newdir,

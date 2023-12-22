@@ -45,6 +45,23 @@ if SERVER then
 				-- Begin pregame
 				state = STATE_PREGAME
 				gamelogic:SetPregameStartedAt( RealTime() )
+				net.Start( "CNR_Logic_Pregame" )
+				net.Broadcast()
+
+				-- Begin preparations for a new round
+				gamelogic:SetMoney( 0 )
+
+				-- Swap teams
+				if CONVARS["rounds_swap"]:GetBool() and gamelogic:GetRound() > (gamelogic:GetSwappedAtRound()-1)+CONVARS["rounds_swap"]:GetInt() then
+					gamelogic:SetTeamSwap( !gamelogic:GetTeamSwap() )
+					gamelogic:SetSwappedAtRound( gamelogic:GetRound() )
+				end
+
+				LOGIC:SetSpawnpoints()
+
+				for i, v in player.Iterator() do
+					v:Spawn()
+				end
 			end
 		end
 	
@@ -69,6 +86,7 @@ if SERVER then
 				gamelogic:SetRoundFinishedAt( RealTime() )
 				net.Start( "CNR_Logic_Postgame" )
 				net.Broadcast()
+				gamelogic:SetRound( gamelogic:GetRound() + 1 )
 			end
 		end
 	
@@ -76,10 +94,11 @@ if SERVER then
 			if (gamelogic:GetRoundFinishedAt() + CONVARS["time_postgame"]:GetInt()) <= RealTime() then
 				state = STATE_PREGAME
 				gamelogic:SetPregameStartedAt( RealTime() )
+				net.Start( "CNR_Logic_Pregame" )
+				net.Broadcast()
 
 				-- Begin preparations for a new round
 				gamelogic:SetMoney( 0 )
-				gamelogic:SetRound( gamelogic:GetRound() + 1 )
 
 				-- Swap teams
 				if CONVARS["rounds_swap"]:GetBool() and gamelogic:GetRound() > (gamelogic:GetSwappedAtRound()-1)+CONVARS["rounds_swap"]:GetInt() then
@@ -92,8 +111,6 @@ if SERVER then
 				for i, v in player.Iterator() do
 					v:Spawn()
 				end
-				net.Start( "CNR_Logic_Pregame" )
-				net.Broadcast()
 			end
 		end
 	
