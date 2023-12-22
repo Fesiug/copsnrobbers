@@ -54,7 +54,6 @@ if SERVER then
 				-- Begin round
 				state = STATE_INGAME
 				gamelogic:SetRoundStartedAt( RealTime() )
-				gamelogic:SetMoney( 0 )
 			end
 		end
 	
@@ -70,6 +69,22 @@ if SERVER then
 			if (gamelogic:GetRoundFinishedAt() + CONVARS["time_postgame"]:GetInt()) <= RealTime() then
 				state = STATE_PREGAME
 				gamelogic:SetPregameStartedAt( RealTime() )
+
+				-- Begin preparations for a new round
+				gamelogic:SetMoney( 0 )
+				gamelogic:SetRound( gamelogic:GetRound() + 1 )
+
+				-- Swap teams
+				if CONVARS["rounds_swap"]:GetBool() and gamelogic:GetRound() > (gamelogic:GetSwappedAtRound()-1)+CONVARS["rounds_swap"]:GetInt() then
+					gamelogic:SetTeamSwap( !gamelogic:GetTeamSwap() )
+					gamelogic:SetSwappedAtRound( gamelogic:GetRound() )
+				end
+
+				LOGIC:SetSpawnpoints()
+
+				for i, v in player.Iterator() do
+					v:Spawn()
+				end
 			end
 		end
 	
@@ -106,4 +121,22 @@ function LOGIC:GetTimeLeft()
 	else
 		return 0, 0
 	end
+end
+
+function LOGIC:Switcheroo( teamid )
+	local gamelogic = LOGIC:GetLogic()
+	local flipped = gamelogic:GetTeamSwap()
+
+	if teamid == TEAM_SIDEA then
+		return (flipped and TEAM_SIDEB or TEAM_SIDEA)
+	else
+		return (flipped and TEAM_SIDEA or TEAM_SIDEB)
+	end
+end
+
+function LOGIC:SetSpawnpoints()
+	local gamelogic = LOGIC:GetLogic()
+	local flipped = gamelogic:GetTeamSwap()
+	team.SetSpawnPoint( flipped and TEAM_SIDEB or TEAM_SIDEA, "info_player_counterterrorist" )
+	team.SetSpawnPoint( flipped and TEAM_SIDEA or TEAM_SIDEB, "info_player_terrorist" )
 end

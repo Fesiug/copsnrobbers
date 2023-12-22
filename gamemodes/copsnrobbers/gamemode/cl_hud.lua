@@ -82,9 +82,9 @@ end
 local slut = {
 	[0] = "UNINIT",
 	[1] = "WAITING",
-	[2] = "PRE-GAME",
+	[2] = "PREGAME",
 	[3] = "TIME",
-	[4] = "POST-GAME",
+	[4] = "POSTGAME",
 }
 
 local gamelogic = NULL
@@ -128,7 +128,7 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 
 	local state = gamelogic:GetState()
 	do
-		local b_w, b_h = s(64+8), s(42)
+		local b_w, b_h = s(64+12), s(42)
 		local b_x, b_y = c1, s(16)
 		surface.SetDrawColor( color_white )
 		surface.DrawRect( b_x, b_y, b_w, b_h )
@@ -142,6 +142,15 @@ hook.Add("HUDPaint", "CNR_HUD", function()
 			fuckhead = string.format( "%02i.%02i", fuckhead.s, fuckhead.ms )
 		end
 		MonoDraw( fuckhead, "CNR_HUD_4", b_x + b, b_y + s(12), color_black, false, special1 )
+
+		do
+			local n_w, n_h = s(128), s(42)
+			local n_x, n_y = b_x + b + b_w, b_y
+			surface.SetDrawColor( color_white )
+			surface.DrawRect( n_x, n_y, n_w, n_h )
+			draw.SimpleText( "ROUND NUMBER", "CNR_HUD_3", n_x + b, n_y + s(4), color_black )
+			draw.SimpleText( gamelogic:GetRound() .. " - " .. gamelogic:GetSwappedAtRound() .. " : " .. (gamelogic:GetTeamSwap() and "Swap" or "Not"), "CNR_HUD_4", n_x + b, n_y + s(12), color_black )
+		end
 	end
 
 	if state == STATE_INGAME or state == STATE_POSTGAME then

@@ -9,8 +9,14 @@ function ENT:SetupDataTables()
 	self:NetworkVar( "Float", 2, "RoundFinishedAt" )
 
 	self:NetworkVar( "Int", 0, "State" )
-	self:NetworkVar( "Int", 1, "RoundNumber" )
+	self:NetworkVar( "Int", 1, "Round" )
 	self:NetworkVar( "Int", 2, "Money" )
+	self:NetworkVar( "Int", 3, "SwappedAtRound" )
+
+	self:NetworkVar( "Bool", 0, "TeamSwap" )
+
+	self:SetRound( 1 )
+	self:SetSwappedAtRound( 1 )
 end
 
 function ENT:Initialize()

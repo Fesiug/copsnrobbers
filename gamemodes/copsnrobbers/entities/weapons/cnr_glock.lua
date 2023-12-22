@@ -7,7 +7,7 @@ SWEP.Slot						= 1
 SWEP.ViewModel					= "models/weapons/cstrike/c_pist_glock18.mdl"
 SWEP.ViewModelFOV				= 90
 SWEP.WorldModel					= "models/weapons/w_pist_glock18.mdl"
-SWEP.ActivePos					= Vector( 1, -6, -1 )
+SWEP.ActivePos					= Vector( 1, -8, -1 )
 
 SWEP.Sound_Fire					= {
 	"cnr/weapons/glock/fire-01.ogg",
