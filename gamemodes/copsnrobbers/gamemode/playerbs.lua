@@ -188,6 +188,29 @@ else
 		local attacker		= net.ReadEntity()
 		local inflictor		= net.ReadEntity()
 
-		chat.AddText( c_attacker, attacker:Nick(), color_white, " [", inflictor:GetPrintName(), "] ", c_victim, victim:Nick(), color_white )
+		local name_victim
+		local name_attacker
+		local name_inflictor
+		if IsValid(victim) then
+			name_victim = victim:Nick()
+		end
+		if IsValid(attacker) then
+			name_attacker = attacker:Nick()
+		end
+		if IsValid(inflictor) then
+			if inflictor.GetPrintName then
+				name_inflictor = inflictor:GetPrintName()
+			else
+				name_inflictor = inflictor:GetClass()
+			end
+		else
+			name_inflictor = "???"
+		end
+
+		if !IsValid( attacker ) then
+			chat.AddText( c_attacker, name_attacker, color_white, " [", name_inflictor, "] ", c_victim, name_victim, color_white )
+		else
+			chat.AddText( c_attacker, name_attacker, color_white, " [", name_inflictor, "] ", c_victim, name_victim, color_white )
+		end
 	end)
 end
